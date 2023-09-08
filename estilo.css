@@ -1,0 +1,71 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+label,input{
+    display:block;
+    line-height: 30px;
+    height: 30px;
+    outline: green;
+    width: 100%;
+}
+
+form{
+    width: 330px;
+    background-color: rgba(rgba(31, 31, 25, 0.425), green, blue, alpha);
+    padding: 20px;
+    margin: 30px auto;
+}
+
+input[type="submit"]{
+    margin-top: 10px;
+}
+
+#esquerda{
+    width: 35%;
+    background-color: rgba(128, 128, 128, 0.474);
+    float: left;
+}
+
+#direita{
+    width: 65%;
+    float: left;
+}
+
+table{
+    background-color: rgba(0, 0, 0, 0.36);
+    width: 90%;
+    margin: 30px auto;
+}
+
+tr{
+    line-height: 30px;
+}
+
+tr#titulo{
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.37);
+    color: white;
+}
+
+#teste{
+    /* Estilos para a classe teste */
+    background-color: rgb(60, 53, 54); /* Cor de fundo */
+    padding: 5px 10px; /* Espaçamento interno */
+    border: 1px solid #000000; /* Borda */
+    border-radius: 4px; /* Borda arredondada */
+    text-align: center; /* Centralizar texto */
+}
+
+#teste a {
+    /* Estilos para os links dentro da classe teste */
+    text-decoration: none; /* Remover sublinhado dos links */
+    margin: 0 5px; /* Espaçamento entre os links */
+    color: #ffffff; /* Cor do texto dos links */
+}
+
+#teste a:hover {
+    /* Estilos para os links quando o mouse passa por cima */
+    color: rgb(181, 174, 174); /* Cor do texto dos links ao passar o mouse */
+}
