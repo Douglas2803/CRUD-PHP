@@ -61,8 +61,8 @@ $p = new Pessoa('localhost','banco','root','');
                     ?>
             <td id="teste"><a href="#">Editar</a>
             
-            <a href="#?id==<?php  ?>">Excluir</a></td>
-            
+            <a href="?id=<?php echo $dados[$i]['ID']; ?>">Excluir</a></td>
+
             <?php
             echo "</tr>";
                 }
@@ -75,3 +75,12 @@ $p = new Pessoa('localhost','banco','root','');
     </section>
 </body>
 </html>
+
+<?php
+    if(isset($_GET['id'])){
+    $id = addslashes($_GET['id']);
+    $p->exclui($id);
+    // Atualiza a página
+    header("location: index.php");
+    }
+?>
