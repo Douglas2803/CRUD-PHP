@@ -45,14 +45,16 @@ class Pessoa{
         $stmt->execute();
     }
     
-    function atualiza($id,$nome){
-        $stmt = $this->conexao->prepare("UPDATE cliente  SET nome = :nome  WHERE id = :id");
+    function atualiza($id,$nome,$dataNascimento){
+        $stmt = $this->conexao->prepare("UPDATE cliente  SET nome = :nome, dataNascimento = :dataNascimento  WHERE id = :id");
         $stmt->bindParam(":id",$id);
         $stmt->bindParam(":nome",$nome);
+        $stmt->bindParam(":dataNascimento",$dataNascimento);
         $stmt->execute();
     }
     
     function buscarDado(){
+        $resultado = array();
         $stmt = $this->conexao->prepare("SELECT * FROM cliente WHERE id = :id");
         $stmt->bindParam(":id",$id);
         $stmt->execute();
@@ -74,5 +76,13 @@ class Pessoa{
         // $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
         // para mais que uma linhas fetchAll(PDO::FETCH_ASSOC);
     
+    }
+
+    function buscarDadosPessoa($id){
+        $stmt= $this->conexao->prepare("SELECT *FROM cliente WHERE id=:id");
+        $stmt->bindValue(":id",$id);
+        $stmt->execute(); 
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $res;
     }
 }

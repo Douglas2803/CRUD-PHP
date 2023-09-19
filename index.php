@@ -18,7 +18,6 @@ $p = new Pessoa('localhost','banco','root','');
         $dataNascimento = addslashes($_POST['dataNascimento']);
     }
     
-    
     if(empty($nome) || empty($dataNascimento)){
         echo "Preencha todo os campos!";
     }else{
@@ -29,15 +28,28 @@ $p = new Pessoa('localhost','banco','root','');
         }
     }
     ?>
+    <?php
+    if(isset($_GET['id_up'])){
+        $id_update = addslashes($_GET['id_up']);
+        $res = $p->buscarDadosPessoa($id_update);
+    }
+    
+    ?>
     <section id="esquerda">
         <form action="#" method="post">
             <h1>Cadastrar Pessoa</h1>
             <label for="nome">Nome</label>
-            <input type="text" name="nome" id="nome">
+            <input type="text" name="nome" id="nome"
+            value="<?php if(isset($res)){echo $res['nome'];}?>"
+            >
             <label for="dataNascimento">Data de Nascimento</label>
-            <input type="date" name="dataNascimento" id="dataNascimento">
+            <input type="date" name="dataNascimento" id="dataNascimento"
+            value="<?php if(isset($res)){echo $res['dataNascimento'];}?>"
+            >
             <label for="submit">submit</label>
-            <input type="submit" value="submit">
+            <input type="submit" value="submit"
+            value="<?php if(isset($res)){echo 'Atualizar';}else{echo 'Cadastrar';}?>"
+            >
         </form>
     </section>
     <section id="direita">
@@ -51,17 +63,18 @@ $p = new Pessoa('localhost','banco','root','');
             $dados = $p->buscarDados();
 
             if(count($dados) > 0){
-                for($i = 0; $i < count($dados); $i++){
+                for($id = 0; $id < count($dados); $id++){
                     echo "<tr>";
-                    foreach ($dados[$i] as $key => $value) {
+                    foreach ($dados[$id] as $key => $value) {
                         if($key != "ID"){
                             echo "<td>".$value."</td>";
                         }
                     }
                     ?>
-            <td id="teste"><a href="#">Editar</a>
-            
-            <a href="?id=<?php echo $dados[$i]['ID']; ?>">Excluir</a></td>
+            <td id="teste">
+                <a href="index.php?id_up=<?php echo $dados[$id]['ID']?>">Editar</a>
+                <a href="index.php?id=<?php echo $dados[$id]['ID']; ?>">Excluir</a>
+            </td>
 
             <?php
             echo "</tr>";
@@ -78,9 +91,16 @@ $p = new Pessoa('localhost','banco','root','');
 
 <?php
     if(isset($_GET['id'])){
-    $id = addslashes($_GET['id']);
-    $p->exclui($id);
-    // Atualiza a página
-    header("location: index.php");
+        $id = addslashes($_GET['id']);
+        $p->exclui($id);
+        // Atualiza a página
+        header("location: index.php");
     }
+
+    if(isset($_GET['id_up'])){
+        $id = addslashes($_GET['id_up']);
+        $p->atualiza($id,$nome,$dataNascimento);
+        header("location: index.php");
+    }
+
 ?>
