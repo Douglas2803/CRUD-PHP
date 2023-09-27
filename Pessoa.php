@@ -15,10 +15,10 @@ class Pessoa{
         }
         }
 
-    function insere($nome,$dataNascimento){
+    public function insere($nome,$dataNascimento){
     
         //verifica se o e-mail já está cadastrado
-        $stmt = $this->conexao->prepare("SELECT * FROM cliente WHERE NOME = :nome");
+        $stmt = $this->conexao->prepare("SELECT ID FROM cliente WHERE NOME = :nome");
         $stmt->bindParam(':nome',$nome);
         
         $stmt->execute();
@@ -39,24 +39,35 @@ class Pessoa{
         
     }
     
-    function exclui($id){
+    public function exclui($id){
         $stmt = $this->conexao->prepare("DELETE FROM cliente WHERE id = :id");
         $stmt->bindParam(":id",$id);
         $stmt->execute();
     }
     
-    function atualiza($id,$nome,$dataNascimento){
-        $stmt = $this->conexao->prepare("UPDATE cliente  SET nome = :nome, dataNascimento = :dataNascimento  WHERE id = :id");
-        $stmt->bindParam(":id",$id);
-        $stmt->bindParam(":nome",$nome);
-        $stmt->bindParam(":dataNascimento",$dataNascimento);
+    public function atualiza($id,$nome,$dataNascimento){
+        $stmt = $this->conexao->prepare("SELECT ID FROM cliente WHERE NOME = :nome");
+        $stmt->bindParam(':nome',$nome);
+        
         $stmt->execute();
+        
+        if($stmt->rowCount() > 0 ){
+            return false; 
+        }else{
+            $stmt = $this->conexao->prepare("UPDATE cliente  SET NOME = :nome, DATA_NASCIMENTO = :dataNascimento  WHERE id = :id");
+            $stmt->bindParam(":id",$id);
+            $stmt->bindParam(":nome",$nome);
+            $stmt->bindParam(":dataNascimento",$dataNascimento);
+            $stmt->execute();
+            return true;
+        }
+
     }
     
-    function buscarDado(){
+    public function buscarDado($id){
         $resultado = array();
         $stmt = $this->conexao->prepare("SELECT * FROM cliente WHERE id = :id");
-        $stmt->bindParam(":id",$id);
+        $stmt->bindValue(":id",$id);
         $stmt->execute();
         // para um unica linha 
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -66,7 +77,7 @@ class Pessoa{
         return $resultado;
     }
 
-    function buscarDados(){
+    public function buscarDados(){
         $resultado = array();
         $stmt = $this->conexao->prepare("SELECT * FROM cliente ORDER BY nome");
         $stmt->execute();
@@ -78,7 +89,8 @@ class Pessoa{
     
     }
 
-    function buscarDadosPessoa($id){
+    public function buscarDadosPessoa($id){
+        $res = [];
         $stmt= $this->conexao->prepare("SELECT *FROM cliente WHERE id=:id");
         $stmt->bindValue(":id",$id);
         $stmt->execute(); 

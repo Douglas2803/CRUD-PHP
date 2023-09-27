@@ -12,43 +12,53 @@ $p = new Pessoa('localhost','banco','root','');
 </head>
 <body>
     <?php
-    //Verifica se existe algo no formulário e trata
-    if(isset($_POST['nome']) && isset($_POST['dataNascimento'])){
-        $nome = addslashes($_POST['nome']);
-        $dataNascimento = addslashes($_POST['dataNascimento']);
-    }
-    
-    if(empty($nome) || empty($dataNascimento)){
-        echo "Preencha todo os campos!";
-    }else{
-        if($p->insere($nome,$dataNascimento)){
-            echo "e-mail cadastrado";
-        }else{
-            echo "emai não foi cadastrado";
-        }
-    }
+
+     // Verifica se existe algo no formulário e trata
+     if(isset($_POST['nome']) && isset($_POST['dataNascimento'])){
+         $nome = addslashes($_POST['nome']);
+         $dataNascimento = addslashes($_POST['dataNascimento']);
+     }
+     
+     if(empty($nome) || empty($dataNascimento)){
+         echo "Preencha todos os camposssss!";
+     } else {
+         if(isset($_GET['id_up'])){
+             $id_update = addslashes($_GET['id_up']);
+             $res = $p->buscarDadosPessoa($id_update);
+             
+             // Define $nome e $dataNascimento com os valores recuperados
+             $nome = $res['NOME'];
+             $dataNascimento = $res['DATA_NASCIMENTO'];
+         }
+ 
+         if($p->insere($nome, $dataNascimento)){
+             echo "Pessoa cadastrada/atualizada com sucesso";
+         } else {
+             echo "A pessoa não foi cadastrada/atualizada";
+         }
+     }
     ?>
     <?php
-    if(isset($_GET['id_up'])){
-        $id_update = addslashes($_GET['id_up']);
-        $res = $p->buscarDadosPessoa($id_update);
-    }
-    
+        if(isset($_GET['id_up'])){
+            $id_update = addslashes($_GET['id_up']);
+            $res = $p->buscarDadosPessoa($id_update);
+        }
     ?>
     <section id="esquerda">
         <form action="#" method="post">
             <h1>Cadastrar Pessoa</h1>
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome"
-            value="<?php if(isset($res)){echo $res['nome'];}?>"
+            value="<?php if(isset($res)){echo $res['NOME'];}?>"
             >
             <label for="dataNascimento">Data de Nascimento</label>
             <input type="date" name="dataNascimento" id="dataNascimento"
-            value="<?php if(isset($res)){echo $res['dataNascimento'];}?>"
+            value="<?php if(isset($res)){echo $res['DATA_NASCIMENTO'];}?>"
             >
             <label for="submit">submit</label>
-            <input type="submit" value="submit"
-            value="<?php if(isset($res)){echo 'Atualizar';}else{echo 'Cadastrar';}?>"
+            <input type="submit"
+            value="<?php if(isset($res)){echo 'Atualizar';}
+            else{echo 'Cadastrar';}?>"
             >
         </form>
     </section>
@@ -72,7 +82,7 @@ $p = new Pessoa('localhost','banco','root','');
                     }
                     ?>
             <td id="teste">
-                <a href="index.php?id_up=<?php echo $dados[$id]['ID']?>">Editar</a>
+                <a href="index.php?id_up=<?php echo $dados[$id]['ID']; ?>">Editar</a>
                 <a href="index.php?id=<?php echo $dados[$id]['ID']; ?>">Excluir</a>
             </td>
 
@@ -97,10 +107,24 @@ $p = new Pessoa('localhost','banco','root','');
         header("location: index.php");
     }
 
-    if(isset($_GET['id_up'])){
+    if (isset($_GET['id_up'])) {
         $id = addslashes($_GET['id_up']);
-        $p->atualiza($id,$nome,$dataNascimento);
-        header("location: index.php");
+    
+        // Verifique se 'nome' e 'dataNascimento' estão definidos nos dados POST
+        if (isset($_POST['nome']) && isset($_POST['dataNascimento'])) {
+            $nome = addslashes($_POST['nome']);
+            $dataNascimento = addslashes($_POST['dataNascimento']);
+    
+            // Chame o método atualiza com os valores corretos
+            if ($p->atualiza($id, $nome, $dataNascimento)) {
+                header("location: index.php");
+                exit; // Saia para evitar a execução adicional do script
+            } else {
+                echo "Erro ao atualizar a pessoa.";
+            }
+        } else {
+            echo "Preencha todos os campos!";
+        }
     }
 
 ?>
