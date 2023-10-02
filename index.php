@@ -1,6 +1,13 @@
 <?php
 require_once 'Pessoa.php';
+session_start();
 $p = new Pessoa('localhost','banco','root','');
+
+if(!isset($_SESSION['usuario_logado'])){
+   header('location: Login.php');
+   exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
