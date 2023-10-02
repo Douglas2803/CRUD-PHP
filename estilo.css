@@ -69,3 +69,7 @@ tr#titulo{
     /* Estilos para os links quando o mouse passa por cima */
     color: rgb(181, 174, 174); /* Cor do texto dos links ao passar o mouse */
 }
+
+#login {
+    padding: 50% 50%;
+}
