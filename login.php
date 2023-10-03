@@ -33,7 +33,6 @@ session_start();
                 if($p->loginUsuario($usuario, $senha)==true){
                     $_SESSION['usuario_logado'] = true;
                     header('location: index.php');
-                    exit();
                 }else{
                     echo 'usuário ou senha inválidos';
                 }

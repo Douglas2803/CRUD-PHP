@@ -5,7 +5,6 @@ $p = new Pessoa('localhost','banco','root','');
 
 if(!isset($_SESSION['usuario_logado'])){
    header('location: Login.php');
-   exit();
 }
 
 ?>
@@ -70,6 +69,16 @@ if(!isset($_SESSION['usuario_logado'])){
         </form>
     </section>
     <section id="direita">
+        <form action="" method="post">
+            <input type="submit" value="logout" name="logout" id="logout">
+        </form>
+            <?php 
+            if(isset($_POST['logout'])){
+                unset($_SESSION['usuario_logado']);
+                header('location: Login.php');
+                exit();
+            }
+            ?>
         <table>
             <tr id="titulo">
                 <td>Nome</td>
