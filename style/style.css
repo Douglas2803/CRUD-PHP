@@ -104,6 +104,18 @@ input {
     text-align: center;
 }
 
+input[type="submit"]{
+    margin-top: 5vh;
+    font-size: 3vh;
+    border-radius: 3px;
+}
+
+input[type="submit"]:hover {
+    background: grey;
+    color: rgba(0, 57, 227, 0.36);
+}
+
+
 h1 {
     display: block;
     text-align: center;
