@@ -1,6 +1,11 @@
 *{
     padding: 0px;
     margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgba(128, 128, 128, 0.218);
 }
 
 label,input{
@@ -71,5 +76,38 @@ tr#titulo{
 }
 
 #login {
-    padding: 50% 50%;
+    margin: 8em auto;
+    width: 51vw;
+    height: 63vh;
+    background-color: rgba(0, 37, 149, 0.36);
+}
+
+#login #form {
+    width: 38vw;
+    height: 44vh;
+    background-color: rgba(0, 0, 0, 0.406);
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: lighter;
+    font-size: 3vh;
+    height: 6vh;
+}
+
+input {
+    display: block;
+    height: 5vh;
+    font-size: 2vh;
+    text-align: center;
+}
+
+h1 {
+    display: block;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.362);
+    padding: 2%;
+    font-size: 3vw;
 }
