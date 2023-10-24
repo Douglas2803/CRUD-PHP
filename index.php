@@ -1,7 +1,7 @@
 <?php
 require_once 'Pessoa.php';
 session_start();
-$p = new Pessoa('localhost','banco','root','');
+$p = new Pessoa('127.0.0.1','banco','root','');
 
 if(!isset($_SESSION['usuario_logado'])){
    header('location: Login.php');
@@ -17,6 +17,12 @@ if(!isset($_SESSION['usuario_logado'])){
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
+    <header>
+        <form action="" method="post">
+                <input type="submit" value="logout" name="logout" id="logout">
+                <input type="submit" value="cadastrar" name="cadastrar" id="cadastrar">
+        </form>
+    </header>
     <?php
 
      // Verifica se existe algo no formulário e trata
@@ -69,9 +75,7 @@ if(!isset($_SESSION['usuario_logado'])){
         </form>
     </section>
     <section id="direita">
-        <form action="" method="post">
-            <input type="submit" value="logout" name="logout" id="logout">
-        </form>
+
             <?php 
             if(isset($_POST['logout'])){
                 unset($_SESSION['usuario_logado']);

@@ -8,25 +8,6 @@ body{
     background-color: rgba(128, 128, 128, 0.218);
 }
 
-label,input{
-    display:block;
-    line-height: 30px;
-    height: 30px;
-    outline: green;
-    width: 100%;
-}
-
-form{
-    width: 330px;
-    background-color: rgba(rgba(31, 31, 25, 0.425), green, blue, alpha);
-    padding: 20px;
-    margin: 30px auto;
-}
-
-input[type="submit"]{
-    margin-top: 10px;
-}
-
 #esquerda{
     width: 35%;
     background-color: rgba(128, 128, 128, 0.474);
@@ -55,37 +36,45 @@ tr#titulo{
 }
 
 #teste{
-    /* Estilos para a classe teste */
-    background-color: rgb(60, 53, 54); /* Cor de fundo */
-    padding: 5px 10px; /* Espaçamento interno */
-    border: 1px solid #000000; /* Borda */
-    border-radius: 4px; /* Borda arredondada */
-    text-align: center; /* Centralizar texto */
+    background-color: rgb(60, 53, 54); 
+    padding: 5px 10px; 
+    border: 1px solid #000000; 
+    border-radius: 4px; 
+    text-align: center; 
 }
 
 #teste a {
-    /* Estilos para os links dentro da classe teste */
-    text-decoration: none; /* Remover sublinhado dos links */
-    margin: 0 5px; /* Espaçamento entre os links */
-    color: #ffffff; /* Cor do texto dos links */
+    text-decoration: none; 
+    margin: 0 5px; 
+    color: #ffffff;
 }
 
 #teste a:hover {
-    /* Estilos para os links quando o mouse passa por cima */
-    color: rgb(181, 174, 174); /* Cor do texto dos links ao passar o mouse */
+    color: rgb(181, 174, 174); 
 }
 
 #login {
+    display: flex;
     margin: 8em auto;
     width: 51vw;
     height: 63vh;
     background-color: rgba(0, 37, 149, 0.36);
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 #login #form {
-    width: 38vw;
-    height: 44vh;
+    display: flex;
+    width: 75%;
+    height: 60%;
     background-color: rgba(0, 0, 0, 0.406);
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 label {
@@ -100,6 +89,7 @@ label {
 input {
     display: block;
     height: 5vh;
+    width: 65%;
     font-size: 2vh;
     text-align: center;
 }
@@ -112,7 +102,7 @@ input[type="submit"]{
 
 input[type="submit"]:hover {
     background: grey;
-    color: rgba(0, 57, 227, 0.36);
+    color: rgba(0, 57, 227, 0.249);
 }
 
 
@@ -122,4 +112,10 @@ h1 {
     background-color: rgba(0, 0, 0, 0.362);
     padding: 2%;
     font-size: 3vw;
+}
+
+.aviso {
+    text-align: center;
+    margin: 4% 0;
+    font-size: 3vh;
 }

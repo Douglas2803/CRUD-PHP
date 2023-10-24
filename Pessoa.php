@@ -16,7 +16,6 @@ class Pessoa{
 
     public function insere($nome,$dataNascimento){
 
-        //verifica se o e-mail já está cadastrado
         $stmt = $this->conexao->prepare("SELECT ID FROM cliente WHERE NOME = :nome");
         $stmt->bindParam(':nome',$nome);
 
@@ -68,11 +67,7 @@ class Pessoa{
         $stmt = $this->conexao->prepare("SELECT * FROM cliente WHERE id = :id");
         $stmt->bindValue(":id",$id);
         $stmt->execute();
-        // para um unica linha
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        // para mais que uma linhas
-        // $resultado = $stmt->fetchAll();
-
         return $resultado;
     }
 
@@ -82,9 +77,6 @@ class Pessoa{
         $stmt->execute();
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $resultado;
-        // para um unica linha
-        // $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        // para mais que uma linhas fetchAll(PDO::FETCH_ASSOC);
 
     }
 
@@ -104,13 +96,10 @@ class Pessoa{
         $usuarioEncontrado = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-        if ($usuarioEncontrado['USUARIO']==$usuario &&  $usuarioEncontrado['SENHA']==$senha){
-            // A senha está correta, autenticar o usuário
-            
+        if ($usuarioEncontrado !== false && $usuarioEncontrado['USUARIO']===$usuario &&  $usuarioEncontrado['SENHA']===$senha){
             $_SESSION['usuario'] = $usuario; 
             return true;
-
-            exit; // Certifique-se de sair para evitar a execução adicional do código
+            exit;
         } else {
             return false;
             exit;
