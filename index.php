@@ -14,44 +14,22 @@ if(!isset($_SESSION['usuario_logado'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="./script.js" defer></script>
 </head>
 <body>
-    <?php
+    <header>
+        <button id="cad">Cadastrar Cliente</button>
+        <form action="" method="post">
+            <input type="submit" value="logout" name="logout" id="logout" class="botoes">
+        </form>
+    </header>
+    <div  id="listaclientes">
+        <p>Lista de clientes</p>
+    </div>
 
-     // Verifica se existe algo no formulário e trata
-     if(isset($_POST['nome']) && isset($_POST['dataNascimento'])){
-         $nome = addslashes($_POST['nome']);
-         $dataNascimento = addslashes($_POST['dataNascimento']);
-     }
-     
-     if(empty($nome) || empty($dataNascimento)){
-         echo "Preencha todos os camposssss!";
-     } else {
-         if(isset($_GET['id_up'])){
-             $id_update = addslashes($_GET['id_up']);
-             $res = $p->buscarDadosPessoa($id_update);
-             
-             // Define $nome e $dataNascimento com os valores recuperados
-             $nome = $res['NOME'];
-             $dataNascimento = $res['DATA_NASCIMENTO'];
-         }
- 
-         if($p->insere($nome, $dataNascimento)){
-             echo "Pessoa cadastrada/atualizada com sucesso";
-         } else {
-             echo "A pessoa não foi cadastrada/atualizada";
-         }
-     }
-    ?>
-    <?php
-        if(isset($_GET['id_up'])){
-            $id_update = addslashes($_GET['id_up']);
-            $res = $p->buscarDadosPessoa($id_update);
-        }
-    ?>
-    <section id="esquerda">
-        <form action="#" method="post">
+    <dialog>
+        <form action="#" method="post" class="cpessoa">
             <h1>Cadastrar Pessoa</h1>
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome"
@@ -62,16 +40,44 @@ if(!isset($_SESSION['usuario_logado'])){
             value="<?php if(isset($res)){echo $res['DATA_NASCIMENTO'];}?>"
             >
             <label for="submit">submit</label>
-            <input type="submit"
+            <input type="submit" name="cadastrar" id="fechar"
             value="<?php if(isset($res)){echo 'Atualizar';}
             else{echo 'Cadastrar';}?>"
             >
         </form>
-    </section>
-    <section id="direita">
-        <form action="" method="post">
-            <input type="submit" value="logout" name="logout" id="logout">
-        </form>
+    <?php
+   // Verifica se existe algo no formulário e trata
+       if(isset($_POST['nome']) && isset($_POST['dataNascimento'])){
+       $nome = addslashes($_POST['nome']);
+       $dataNascimento = addslashes($_POST['dataNascimento']);
+        }
+    
+       if(empty($nome) || empty($dataNascimento)){
+           echo "Preencha todos os camposssss!";
+       } else {
+           if(isset($_GET['id_up'])){
+               $id_update = addslashes($_GET['id_up']);
+               $res = $p->buscarDadosPessoa($id_update);
+
+               // Define $nome e $dataNascimento com os valores recuperados
+               $nome = $res['NOME'];
+               $dataNascimento = $res['DATA_NASCIMENTO'];
+           }
+
+           if($p->insere($nome, $dataNascimento)){
+               echo "Pessoa cadastrada/atualizada com sucesso";
+           } else {
+               echo "A pessoa não foi cadastrada/atualizada";
+           }
+       }
+          if(isset($_GET['id_up'])){
+              $id_update = addslashes($_GET['id_up']);
+              $res = $p->buscarDadosPessoa($id_update);
+          }
+    ?>
+    </dialog>
+    <section id="lista">
+
             <?php 
             if(isset($_POST['logout'])){
                 unset($_SESSION['usuario_logado']);

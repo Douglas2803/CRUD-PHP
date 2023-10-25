@@ -1,0 +1,181 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgba(128, 128, 128, 0.218);
+}
+
+#lista{
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+table{
+    background-color: rgba(0, 0, 0, 0.36);
+    width: 90%;
+    margin: 30px auto;
+}
+
+tr{
+    line-height: 30px;
+}
+
+tr#titulo{
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.37);
+    color: white;
+}
+
+#teste{
+    background-color: rgb(60, 53, 54); 
+    padding: 5px 10px; 
+    border: 1px solid #000000; 
+    border-radius: 4px; 
+    text-align: center; 
+}
+
+#teste a {
+    text-decoration: none; 
+    margin: 0 5px; 
+    color: #ffffff;
+}
+
+#teste a:hover {
+    color: rgb(181, 174, 174); 
+}
+
+#login {
+    display: flex;
+    margin: 8em auto;
+    width: 51vw;
+    height: 63vh;
+    background-color: rgba(0, 37, 149, 0.36);
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#login #form {
+    display: flex;
+    width: 75%;
+    height: 60%;
+    background-color: rgba(0, 0, 0, 0.406);
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: lighter;
+    font-size: 3vh;
+    height: 6vh;
+}
+
+input {
+    display: block;
+    height: 5vh;
+    width: 65%;
+    font-size: 2vh;
+    text-align: center;
+}
+.cpessoa{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+input[type="submit"]{
+    margin-top: 5vh;
+    font-size: 3vh;
+    border-radius: 3px;
+}
+
+input[type="submit"]:hover {
+    background: grey;
+    color: rgba(0, 57, 227, 0.249);
+}
+
+
+h1 {
+    display: block;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.362);
+    padding: 2%;
+    font-size: 3vw;
+}
+
+.aviso {
+    text-align: center;
+    margin: 4% 0;
+    font-size: 3vh;
+}
+
+dialog::backdrop{
+    backdrop-filter: blur(5px);
+}
+
+dialog{
+    margin: auto auto;
+    width: 60%;
+    height: 70%;
+}
+
+header {
+    display: flex;
+    background-color: rgba(41, 41, 43, 0.176);
+    align-content: stretch;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+form {
+    height: 100%;
+    width: 20vw;
+
+}
+
+.botoes {
+    margin: auto auto;
+    transform: translateY(-20px);
+}
+
+#cad{
+    height: 5vh;
+    font-size: 3vh;
+    border-radius: 3px;
+}
+
+#cad:hover {
+    background: grey;
+    color: rgba(0, 57, 227, 0.249);
+}
+
+#listaclientes{
+    display: flex;
+    margin: auto auto;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: 6vh;
+    margin-top: 2vh;
+}
+
+p{
+    margin: auto auto;
+    font-size: 5vh;
+}
