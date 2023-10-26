@@ -29,7 +29,7 @@ if(!isset($_SESSION['usuario_logado'])){
     </div>
 
     <dialog>
-        <form action="#" method="post" class="cpessoa">
+        <form action="" method="post" class="cpessoa" onsubmit="return verifica()">
             <h1>Cadastrar Pessoa</h1>
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome"
@@ -40,21 +40,21 @@ if(!isset($_SESSION['usuario_logado'])){
             value="<?php if(isset($res)){echo $res['DATA_NASCIMENTO'];}?>"
             >
             <label for="submit">submit</label>
-            <input type="submit" name="cadastrar" id="fechar"
+            <input type="submit" name="cadastrar"
             value="<?php if(isset($res)){echo 'Atualizar';}
             else{echo 'Cadastrar';}?>"
             >
         </form>
     <?php
+    
    // Verifica se existe algo no formulário e trata
        if(isset($_POST['nome']) && isset($_POST['dataNascimento'])){
        $nome = addslashes($_POST['nome']);
        $dataNascimento = addslashes($_POST['dataNascimento']);
         }
     
-       if(empty($nome) || empty($dataNascimento)){
-           echo "Preencha todos os camposssss!";
-       } else {
+       if(isset($nome) && isset($dataNascimento)){
+
            if(isset($_GET['id_up'])){
                $id_update = addslashes($_GET['id_up']);
                $res = $p->buscarDadosPessoa($id_update);
